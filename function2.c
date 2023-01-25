@@ -21,7 +21,7 @@ void *addrs = va_arg(types, void *);
 UNUSED(width);
 UNUSED(size);
 if (addrs == NULL)
-return (write(1, "(nil)", 5));
+return (write(1, "NULL", 4));
 buffer[BUFF_SIZE - 1] = '\0';
 UNUSED(precision);
 num_addrs = (unsigned long)addrs;
