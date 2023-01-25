@@ -1,29 +1,16 @@
 #include "main.h"
-
- 
-
 /************************* WRITE HANDLE *************************/
 
 /**
-
  * handle_write_char - Prints a string
-
  * @c: char types.
-
  * @buffer: Buffer array to handle print
-
  * @flags:  Calculates active flags.
-
  * @width: get width.
-
  * @precision: precision specifier
-
  * @size: Size specifier
-
  *
-
  * Return: Number of chars printed.
-
  */
 
 int handle_write_char(char c, char buffer[],
@@ -36,25 +23,25 @@ int i = 0;
 
 char padd = ' ';
 
- 
+
 
 UNUSED(precision);
 
 UNUSED(size);
 
- 
+
 
 if (flags & F_ZERO)
 
 padd = '0';
 
- 
+
 
 buffer[i++] = c;
 
 buffer[i] = '\0';
 
- 
+
 
 if (width > 1)
 
@@ -66,7 +53,7 @@ for (i = 0; i < width - 1; i++)
 
 buffer[BUFF_SIZE - i - 2] = padd;
 
- 
+
 
 if (flags & F_MINUS)
 
@@ -82,38 +69,24 @@ write(1, &buffer[0], 1));
 
 }
 
- 
+
 
 return (write(1, &buffer[0], 1));
 
 }
 
- 
-
 /************************* WRITE NUMBER *************************/
-
 /**
-
  * write_number - Prints a string
-
  * @is_negative: Lista of arguments
-
  * @ind: char types.
-
  * @buffer: Buffer array to handle print
-
  * @flags:  Calculates active flags
-
  * @width: get width.
-
  * @precision: precision specifier
-
  * @size: Size specifier
-
  *
-
  * Return: Number of chars printed.
-
  */
 
 int write_number(int is_negative, int ind, char buffer[],
@@ -126,11 +99,11 @@ int length = BUFF_SIZE - ind - 1;
 
 char padd = ' ', extra_ch = 0;
 
- 
+
 
 UNUSED(size);
 
- 
+
 
 if ((flags & F_ZERO) && !(flags & F_MINUS))
 
@@ -148,40 +121,26 @@ else if (flags & F_SPACE)
 
 extra_ch = ' ';
 
- 
+
 
 return (write_num(ind, buffer, flags, width, precision,
 
 length, padd, extra_ch));
 
 }
-
  
-
-/**
-
+ /**
  * write_num - Write a number using a bufffer
-
  * @ind: Index at which the number starts on the buffer
-
  * @buffer: Buffer
-
  * @flags: Flags
-
  * @width: width
-
  * @prec: Precision specifier
-
  * @length: Number length
-
  * @padd: Pading char
-
  * @extra_c: Extra char
-
  *
-
  * Return: Number of printed chars.
-
  */
 
 int write_num(int ind, char buffer[],
@@ -194,7 +153,7 @@ int length, char padd, char extra_c)
 
 int i, padd_start = 1;
 
- 
+
 
 if (prec == 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0' && width == 0)
 
@@ -274,30 +233,20 @@ return (write(1, &buffer[ind], length));
 
 }
 
- 
+
 
 /**
 
  * write_unsgnd - Writes an unsigned number
-
  * @is_negative: Number indicating if the num is negative
-
  * @ind: Index at which the number starts in the buffer
-
  * @buffer: Array of chars
-
  * @flags: Flags specifiers
-
  * @width: Width specifier
-
  * @precision: Precision specifier
-
  * @size: Size specifier
-
  *
-
  * Return: Number of written chars.
-
  */
 
 int write_unsgnd(int is_negative, int ind,
@@ -314,25 +263,25 @@ int length = BUFF_SIZE - ind - 1, i = 0;
 
 char padd = ' ';
 
- 
+
 
 UNUSED(is_negative);
 
 UNUSED(size);
 
- 
+
 
 if (precision == 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0')
 
 return (0); /* printf(".0d", 0)  no char is printed */
 
- 
+
 
 if (precision > 0 && precision < length)
 
 padd = ' ';
 
- 
+
 
 while (precision > length)
 
@@ -344,13 +293,13 @@ length++;
 
 }
 
- 
+
 
 if ((flags & F_ZERO) && !(flags & F_MINUS))
 
 padd = '0';
 
- 
+
 
 if (width > length)
 
@@ -360,11 +309,11 @@ for (i = 0; i < width - length; i++)
 
 buffer[i] = padd;
 
- 
+
 
 buffer[i] = '\0';
 
- 
+
 
 if (flags & F_MINUS) /* Asign extra char to left of buffer [buffer>padd]*/
 
@@ -384,38 +333,26 @@ return (write(1, &buffer[0], i) + write(1, &buffer[ind], length));
 
 }
 
- 
+
 
 return (write(1, &buffer[ind], length));
 
 }
 
- 
+
 
 /**
-
  * write_pointer - Write a memory address
-
  * @buffer: Arrays of chars
-
  * @ind: Index at which the number starts in the buffer
-
  * @length: Length of number
-
  * @width: Wwidth specifier
-
  * @flags: Flags specifier
-
  * @padd: Char representing the padding
-
  * @extra_c: Char representing extra char
-
  * @padd_start: Index at which padding should start
-
  *
-
  * Return: Number of written chars.
-
  */
 
 int write_pointer(char buffer[], int ind, int length,
@@ -426,7 +363,7 @@ int width, int flags, char padd, char extra_c, int padd_start)
 
 int i;
 
- 
+
 
 if (width > length)
 
