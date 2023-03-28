@@ -15,9 +15,6 @@
 #define BUFF_SIZE 1024
 
 
-int print_float(va_list types, char buffer[], int flags, int width, int precision, int size);
-
-
 
 /* FLAGS */
 
